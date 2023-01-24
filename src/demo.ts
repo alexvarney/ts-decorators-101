@@ -46,7 +46,11 @@ export class UsefulThing {
     this.someProp = 0;
   }
 
-  @LogProps<UsefulThing["setProp"]>("some-prefix", [(args) => {}])
+  @LogProps<UsefulThing["setProp"]>("some-prefix", [
+    (args) => {
+      console.log("Middleware", { value1: args[0], value2: args[1] });
+    },
+  ])
   @LogProps("another-thing")
   setProp(value: number, otherThing: string) {
     this.someProp = value;
